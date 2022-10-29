@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple Modal</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <p>A simple modal dialog</p>
+    <button onclick="openModal()" class="modal-button">Click me</button>
+    <p id="result" class="hide"></p>
+    <script src="./script.js"></script>
+    <script>
+      async function openModal() {
+        document.getElementById("result").classList.add("hide");
+        this.myModal = new Modal(
+          "Are you sure you want to continue.",
+          "Yes",
+          "Cancel",
+          () => {
+            document.getElementById("result").classList.remove("hide");
+            document.getElementById("result").innerHTML =
+              'You just clicked "Yes"';
+          },
+          () => {
+            document.getElementById("result").classList.remove("hide");
+            document.getElementById("result").innerHTML =
+              'You just clicked "Cancel"';
+          },
+          () => {
+            alert("cancelled");
+          }
+        );
+        await myModal.show();
+      }
+    </script>
+  </body>
+</html>
